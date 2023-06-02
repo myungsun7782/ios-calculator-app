@@ -47,7 +47,7 @@
 
 #### 문제점 
 
-- 처음에는 `Array` 1개로 `Queue`를 구현했습니다. 그런데, 이렇게 구현을 해보니 `Queue`에서 데이터를 `dequeue`할 때 시간 복잡도가 O(N)이 되는 문제가 생겼습니다. 처음에는 시간 복잡도가 `O(N)`이 된다 하더라도 큰 문제가 없을 줄 알았지만, 나중에 입력으로 들어오는 데이터가 많을 경우에 처리되는 시간이 더 걸림으로서 앱의 성능에 큰 문제가 될 수도 있겠다는 생각이 들었습니다.
+- 처음에는 `Array` 1개로 `Queue`를 구현했습니다. 그런데, 이렇게 구현을 해보니 `Queue`에서 데이터를 `dequeue`할 때 시간 복잡도가 `O(N)`이 되는 문제가 생겼습니다. 처음에는 시간 복잡도가 `O(N)`이 된다 하더라도 큰 문제가 없을 줄 알았지만, 나중에 입력으로 들어오는 데이터가 많을 경우에 처리되는 시간이 더 걸림으로서 앱의 성능에 큰 문제가 될 수도 있겠다는 생각이 들었습니다.
 
 ```swift
 struct CalculatorItemQueue {
@@ -57,7 +57,7 @@ struct CalculatorItemQueue {
 
 #### 해결 방법 
 
-- `Double Stack`을 사용해서 `Queue`를 구현했습니다. `Double Stack`으로 `Queue`를 구현하면서 얻을 수 있는 가장 큰 이점은 `dequeue`할 때 시간 복잡도를 줄일 수 있다는 것이었습니다. `dequeue`메서드는 `outStack`이 비어있을 경우, `inStack`의 모든 요소를 `outStack`으로 옮기는 작업이 필요하므로, 시간 복잡도가 `O(n)`이 되지만 이 작업은 `oustStack`이 비어 있는 경우에만 수행되므로, 각 요소는 한 번씩만 옮겨집니다. 따라서, `dequeue`의 평균 시간 복잡도는 `O(1)`이 됩니다.
+- `Double Stack`을 사용해서 `Queue`를 구현했습니다. `Double Stack`으로 `Queue`를 구현하면서 얻을 수 있는 가장 큰 이점은 `dequeue`할 때 시간 복잡도를 줄일 수 있다는 것이었습니다. `dequeue`메서드는 `outStack`이 비어있을 경우, `inStack`의 모든 요소를 `outStack`으로 옮기는 작업이 필요하므로, 시간 복잡도가 `O(N)`이 되지만 이 작업은 `oustStack`이 비어 있는 경우에만 수행되므로, 각 요소는 한 번씩만 옮겨집니다. 따라서, `dequeue`의 평균 시간 복잡도는 `O(1)`이 됩니다.
 
 ```swift
 struct CalculatorItemQueue<T>: CalculateItem {
